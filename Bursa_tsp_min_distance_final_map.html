@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8bcaf9db9a31a0d331ed1b289a7ceaf9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="
+            position: fixed;
+            bottom: 50px; left: 50px; width: 320px; height: 130px;
+            border:2px solid #007bff; z-index:9999; font-size:14px;
+            background-color:white; opacity: 0.95; padding:10px; border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        ">
+          <h4 style="margin-top:0; color:#007bff;">📍 Bursa TSP Tour Summary (Min Distance)</h4>
+          <ul style="list-style-type: none; padding: 0;">
+            <li style="margin-bottom: 5px;">Total Distance: <span style="font-weight: bold;">12.99 km</span></li>
+            <li style="margin-bottom: 5px;">Est. Duration: <span style="font-weight: bold;">0:25:58</span></li>
+            <li>Number of Stops: 9</li>
+          </ul>
+        </div>
+    
+    
+            <div class="folium-map" id="map_8bcaf9db9a31a0d331ed1b289a7ceaf9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8bcaf9db9a31a0d331ed1b289a7ceaf9 = L.map(
+                "map_8bcaf9db9a31a0d331ed1b289a7ceaf9",
+                {
+                    center: [40.18, 29.07],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a77ae83aeb51b224ca77750ab877c051 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a77ae83aeb51b224ca77750ab877c051.addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var poly_line_a9e0f46c2f097aafc65fce3cd0c8aaef = L.polyline(
+                [[40.1835545, 29.0612787], [40.1826714, 29.0615288], [40.1829198, 29.0607956], [40.1828885, 29.0599866], [40.1828809, 29.0598161], [40.1828343, 29.0594397], [40.1828643, 29.0592207], [40.1829661, 29.0585714], [40.1830698, 29.0585767], [40.1833611, 29.0586344], [40.1841914, 29.0588839], [40.1855859, 29.0580056], [40.1856906, 29.0579475], [40.1856492, 29.0575035], [40.185585, 29.0573407], [40.1856515, 29.0569732], [40.1857362, 29.0563939], [40.1857921, 29.0556401], [40.1858186, 29.0554632], [40.1859483, 29.0546814], [40.1861416, 29.0535005], [40.1861655, 29.0533548], [40.1862589, 29.0525968], [40.1863291, 29.0520482], [40.1865069, 29.0512665], [40.1865552, 29.0507977], [40.1866539, 29.0504609], [40.187065, 29.0501339], [40.1871478, 29.0500575], [40.1857581, 29.0486932], [40.1861235, 29.0489496], [40.1867756, 29.0485395], [40.1869562, 29.0481665], [40.1875972, 29.0473061], [40.1884479, 29.0466734], [40.188494, 29.0466372], [40.1888162, 29.0463886], [40.189116, 29.0461373], [40.1894087, 29.0457929], [40.1897914, 29.0455749], [40.190741, 29.0451951], [40.1910489, 29.0450783], [40.1916102, 29.0449408], [40.1914796, 29.045887], [40.1916102, 29.0449408], [40.1922192, 29.0449987], [40.1926731, 29.0438372], [40.1939314, 29.0414795], [40.1940361, 29.0414588], [40.1948461, 29.0404617], [40.1961631, 29.0392014], [40.1975148, 29.0384455], [40.1991174, 29.0395937], [40.1991095, 29.0412194], [40.1990677, 29.0423362], [40.1990533, 29.0427197], [40.199107, 29.0435229], [40.1992709, 29.0445489], [40.1988275, 29.0457822], [40.198147, 29.0477812], [40.1975905, 29.0487093], [40.1958706, 29.0491854], [40.195578, 29.0492092], [40.1953267, 29.0492284], [40.1916406, 29.0494688], [40.1915073, 29.0494407], [40.1911269, 29.0493684], [40.1910576, 29.0494014], [40.1909646, 29.0495412], [40.1905561, 29.0504892], [40.1903221, 29.0512533], [40.1900895, 29.0520485], [40.1895309, 29.054065], [40.1893686, 29.0546258], [40.1881534, 29.0583768], [40.1880682, 29.058502], [40.1884535, 29.0597908], [40.1884812, 29.0606556], [40.1884669, 29.0608631], [40.1885751, 29.0615603], [40.1885996, 29.0619527], [40.1880052, 29.0619358], [40.1879464, 29.0625056], [40.1878254, 29.0628538], [40.1878306, 29.0629554], [40.1868459, 29.0632646], [40.1867361, 29.0631614], [40.1866417, 29.0634371], [40.186514, 29.0637919], [40.1860333, 29.0644776], [40.1857231, 29.0648394], [40.1860333, 29.0644776], [40.1863578, 29.0651217], [40.1864432, 29.065444], [40.1867594, 29.0657349], [40.1869188, 29.0657866], [40.1871762, 29.0658503], [40.1877481, 29.0660676], [40.1875947, 29.0667291], [40.187284, 29.0683817], [40.1872867, 29.068961], [40.1872881, 29.0691995], [40.1873572, 29.0725099], [40.1873477, 29.0732319], [40.1873646, 29.0736317], [40.1874149, 29.0747061], [40.1874973, 29.076141], [40.1874524, 29.0766335], [40.1873552, 29.0770292], [40.187271, 29.0772201], [40.1873429, 29.0773194], [40.1874367, 29.0771291], [40.1876274, 29.0763842], [40.187587, 29.075492], [40.1878417, 29.0753026], [40.1881791, 29.0758008], [40.1879594, 29.0761365], [40.1880498, 29.0767039], [40.1883222, 29.0774779], [40.1881497, 29.0779153], [40.1879735, 29.0776996], [40.1874367, 29.0771291], [40.1873552, 29.0770292], [40.1870452, 29.0767281], [40.1850189, 29.0740198], [40.1849621, 29.0738021], [40.1846911, 29.0732769], [40.184125, 29.0725521], [40.1837859, 29.0722588], [40.1832707, 29.0717871], [40.1831794, 29.0716768], [40.1826216, 29.0711039], [40.1822365, 29.0698027], [40.1811718, 29.069252], [40.1805964, 29.0685671], [40.1800881, 29.0679621], [40.180339, 29.0676503], [40.1795013, 29.0664272], [40.1789655, 29.0655982], [40.1788104, 29.0653618], [40.1786553, 29.0651683], [40.1788326, 29.0647677], [40.178761, 29.0647645], [40.1784446, 29.0644937], [40.1781108, 29.0638367], [40.1780209, 29.0637141], [40.1779265, 29.0635655], [40.1777745, 29.0632868], [40.177218, 29.0623921], [40.1771595, 29.0623879], [40.1765045, 29.0622727], [40.1760686, 29.0620858], [40.1750831, 29.0623553], [40.1760686, 29.0620858], [40.1765045, 29.0622727], [40.1771595, 29.0623879], [40.177218, 29.0623921], [40.1773306, 29.0621816], [40.1777289, 29.0609034], [40.1782061, 29.0600585], [40.1787165, 29.0600434], [40.1791764, 29.0600797], [40.1798647, 29.0600842], [40.1804888, 29.05988], [40.1805597, 29.0600269], [40.1809904, 29.0598635], [40.1812893, 29.0598493], [40.1817018, 29.0596872], [40.1817567, 29.0591162], [40.1822677, 29.0583829], [40.1824134, 29.0585199], [40.1824803, 29.0585808], [40.1829661, 29.0585714], [40.1830698, 29.0585767], [40.1833611, 29.0586344], [40.1841914, 29.0588839], [40.1855859, 29.0580056], [40.1856906, 29.0579475], [40.1864135, 29.0575976], [40.1856906, 29.0579475], [40.1855859, 29.0580056], [40.1841914, 29.0588839], [40.1840478, 29.059745], [40.1839496, 29.0599865], [40.18387, 29.0601714], [40.1836027, 29.0609352], [40.1835545, 29.0612787]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            poly_line_a9e0f46c2f097aafc65fce3cd0c8aaef.bindTooltip(
+                `<div>
+                     Total Distance: 12.99 km | Est. Time: 0:25:58
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d2f5a4c47384deaea0494d3fded22c5b = L.marker(
+                [40.18427505098681, 29.061943615457412],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_a75951cb56a12cf144bd71031d9b5940 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e1\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_1c0e618c837c2d122db640462f64ef0e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6f2a2923d4b374a3f2bb6da21fd17fca = $(`<div id="html_6f2a2923d4b374a3f2bb6da21fd17fca" style="width: 100.0%; height: 100.0%;">**Stop 1:** Ulu Camii</div>`)[0];
+                popup_1c0e618c837c2d122db640462f64ef0e.setContent(html_6f2a2923d4b374a3f2bb6da21fd17fca);
+            
+        
+
+        marker_d2f5a4c47384deaea0494d3fded22c5b.bindPopup(popup_1c0e618c837c2d122db640462f64ef0e)
+        ;
+
+        
+    
+    
+                marker_d2f5a4c47384deaea0494d3fded22c5b.setIcon(div_icon_a75951cb56a12cf144bd71031d9b5940);
+            
+    
+            var marker_00b091a5a91945ef99a998d9c5ac7285 = L.marker(
+                [40.18484880652651, 29.06353148314309],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_d28766d7b504453826e33ca7fb385204 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e5\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_036ff9886ee24a9c8df9c317c18282a2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a51aacc43194fc0745f9cadfdae99e60 = $(`<div id="html_a51aacc43194fc0745f9cadfdae99e60" style="width: 100.0%; height: 100.0%;">**Stop 5:** Koza Han</div>`)[0];
+                popup_036ff9886ee24a9c8df9c317c18282a2.setContent(html_a51aacc43194fc0745f9cadfdae99e60);
+            
+        
+
+        marker_00b091a5a91945ef99a998d9c5ac7285.bindPopup(popup_036ff9886ee24a9c8df9c317c18282a2)
+        ;
+
+        
+    
+    
+                marker_00b091a5a91945ef99a998d9c5ac7285.setIcon(div_icon_d28766d7b504453826e33ca7fb385204);
+            
+    
+            var marker_d25d0882dd146396ad9b4edbcc6e0e58 = L.marker(
+                [40.18781586493572, 29.057619894763597],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_bf7c68a3b7c8e255a4f76f0ab8dd4311 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e4\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_709271ce570e7e7934637f9ff93b2c6c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f124d6288e1c082ece7d2d179c6a8123 = $(`<div id="html_f124d6288e1c082ece7d2d179c6a8123" style="width: 100.0%; height: 100.0%;">**Stop 4:** Tophane Saat Kulesi</div>`)[0];
+                popup_709271ce570e7e7934637f9ff93b2c6c.setContent(html_f124d6288e1c082ece7d2d179c6a8123);
+            
+        
+
+        marker_d25d0882dd146396ad9b4edbcc6e0e58.bindPopup(popup_709271ce570e7e7934637f9ff93b2c6c)
+        ;
+
+        
+    
+    
+                marker_d25d0882dd146396ad9b4edbcc6e0e58.setIcon(div_icon_bf7c68a3b7c8e255a4f76f0ab8dd4311);
+            
+    
+            var marker_44d2e6fd05d4fd98d4b1cbf66e5b2c39 = L.marker(
+                [40.198594535963366, 29.045725587180673],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_2efc1be874893a3d8984206e29c80f88 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e3\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_5840c1099ae9b953f41d4355bc00de30 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_89bf639d244827c2731ff93ba152b8e6 = $(`<div id="html_89bf639d244827c2731ff93ba152b8e6" style="width: 100.0%; height: 100.0%;">**Stop 3:** Lunapark</div>`)[0];
+                popup_5840c1099ae9b953f41d4355bc00de30.setContent(html_89bf639d244827c2731ff93ba152b8e6);
+            
+        
+
+        marker_44d2e6fd05d4fd98d4b1cbf66e5b2c39.bindPopup(popup_5840c1099ae9b953f41d4355bc00de30)
+        ;
+
+        
+    
+    
+                marker_44d2e6fd05d4fd98d4b1cbf66e5b2c39.setIcon(div_icon_2efc1be874893a3d8984206e29c80f88);
+            
+    
+            var marker_582f435930b7337ccb083fc17aa33bdd = L.marker(
+                [40.19121716736091, 29.046222989476252],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_8d6457ca3acb38ae48f2281dff4c6246 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e2\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_bf6c6f76c726549214ad6e892fc817d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6f02b01e7aec0e64c0330cf1332852a0 = $(`<div id="html_6f02b01e7aec0e64c0330cf1332852a0" style="width: 100.0%; height: 100.0%;">**Stop 2:** Muradiye Külliyesi</div>`)[0];
+                popup_bf6c6f76c726549214ad6e892fc817d6.setContent(html_6f02b01e7aec0e64c0330cf1332852a0);
+            
+        
+
+        marker_582f435930b7337ccb083fc17aa33bdd.bindPopup(popup_bf6c6f76c726549214ad6e892fc817d6)
+        ;
+
+        
+    
+    
+                marker_582f435930b7337ccb083fc17aa33bdd.setIcon(div_icon_8d6457ca3acb38ae48f2281dff4c6246);
+            
+    
+            var marker_c82d298f1ba3320d55befa41bacb8fda = L.marker(
+                [40.18629956679333, 29.058067624597292],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_3b274c23787ad382fb28536aec2b6dfe = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e9\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_1962b4de7df127cc95e4425196a1ab17 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_36c1fde3e8adadca9bf6980348404303 = $(`<div id="html_36c1fde3e8adadca9bf6980348404303" style="width: 100.0%; height: 100.0%;">**Stop 9:** Saltanat Kapısı</div>`)[0];
+                popup_1962b4de7df127cc95e4425196a1ab17.setContent(html_36c1fde3e8adadca9bf6980348404303);
+            
+        
+
+        marker_c82d298f1ba3320d55befa41bacb8fda.bindPopup(popup_1962b4de7df127cc95e4425196a1ab17)
+        ;
+
+        
+    
+    
+                marker_c82d298f1ba3320d55befa41bacb8fda.setIcon(div_icon_3b274c23787ad382fb28536aec2b6dfe);
+            
+    
+            var marker_0377ec4360d584eabe6cab3c9d50689e = L.marker(
+                [40.18266031289346, 29.07081348157587],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_1449f5a3008188100345a85f8c55f821 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e7\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_a9b947bd7eb2d607d9407a283d8659b0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e11d090dd8dabd8771b3a96495ee77ae = $(`<div id="html_e11d090dd8dabd8771b3a96495ee77ae" style="width: 100.0%; height: 100.0%;">**Stop 7:** Irgandı Köprüsü</div>`)[0];
+                popup_a9b947bd7eb2d607d9407a283d8659b0.setContent(html_e11d090dd8dabd8771b3a96495ee77ae);
+            
+        
+
+        marker_0377ec4360d584eabe6cab3c9d50689e.bindPopup(popup_a9b947bd7eb2d607d9407a283d8659b0)
+        ;
+
+        
+    
+    
+                marker_0377ec4360d584eabe6cab3c9d50689e.setIcon(div_icon_1449f5a3008188100345a85f8c55f821);
+            
+    
+            var marker_66ff52477e21904d9c8e83d8217ec542 = L.marker(
+                [40.174823779117055, 29.065105741139103],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_6de8d5e77448e886607494032de89270 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e8\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_8c473c668a5c810af2432202da9607d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ec2aa0aecb68a774d090857506e27789 = $(`<div id="html_ec2aa0aecb68a774d090857506e27789" style="width: 100.0%; height: 100.0%;">**Stop 8:** Hünkar Köşkü</div>`)[0];
+                popup_8c473c668a5c810af2432202da9607d9.setContent(html_ec2aa0aecb68a774d090857506e27789);
+            
+        
+
+        marker_66ff52477e21904d9c8e83d8217ec542.bindPopup(popup_8c473c668a5c810af2432202da9607d9)
+        ;
+
+        
+    
+    
+                marker_66ff52477e21904d9c8e83d8217ec542.setIcon(div_icon_6de8d5e77448e886607494032de89270);
+            
+    
+            var marker_479f69d74f475defb5508d3ad24cf97a = L.marker(
+                [40.18670181066609, 29.075553295914325],
+                {
+}
+            ).addTo(map_8bcaf9db9a31a0d331ed1b289a7ceaf9);
+        
+    
+            var div_icon_c6e4390fea47f037687194793ee7f1ab = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 14pt; color: white; background-color: #007bff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-weight: bold;\"\u003e6\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_602a856459ea11c97c6503a731671eb9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aa3224e60dca11d7ccd1e2d8aea453e3 = $(`<div id="html_aa3224e60dca11d7ccd1e2d8aea453e3" style="width: 100.0%; height: 100.0%;">**Stop 6:** Panorama 1326 Bursa Fetih Müzesi</div>`)[0];
+                popup_602a856459ea11c97c6503a731671eb9.setContent(html_aa3224e60dca11d7ccd1e2d8aea453e3);
+            
+        
+
+        marker_479f69d74f475defb5508d3ad24cf97a.bindPopup(popup_602a856459ea11c97c6503a731671eb9)
+        ;
+
+        
+    
+    
+                marker_479f69d74f475defb5508d3ad24cf97a.setIcon(div_icon_c6e4390fea47f037687194793ee7f1ab);
+            
+</script>
+</html>
